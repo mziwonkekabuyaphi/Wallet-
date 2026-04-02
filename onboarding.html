@@ -15,28 +15,43 @@
 
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #E30613, #8B0000);
+    background: transparent;
     min-height: 100vh;
     overflow: hidden;
     position: relative;
   }
 
-  .onboarding-container {
+  /* Onboarding Overlay - Glassmorphism Style */
+  .onboarding-overlay {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #E30613, #8B0000);
+    background: rgba(227, 6, 19, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     z-index: 10000;
     display: flex;
     flex-direction: column;
     transition: opacity 0.5s ease;
   }
 
-  .onboarding-container.hide {
+  .onboarding-overlay.hide {
     opacity: 0;
     pointer-events: none;
+  }
+
+  /* Glass Card Container */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 48px;
+    margin: 20px;
+    padding: 20px 0;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
   }
 
   .swipe-area {
@@ -44,6 +59,7 @@
     position: relative;
     overflow: hidden;
     touch-action: pan-y pinch-zoom;
+    min-height: 400px;
   }
 
   .slides-wrapper {
@@ -60,39 +76,39 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 30px;
+    padding: 30px 25px;
     text-align: center;
     color: white;
   }
 
   .slide-icon {
-    width: 120px;
-    height: 120px;
-    background: rgba(255,255,255,0.2);
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     animation: iconFloat 3s ease-in-out infinite;
   }
 
   @keyframes iconFloat {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
   }
 
   .slide-icon i {
-    font-size: 60px;
+    font-size: 48px;
     color: white;
   }
 
   .slide-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 800;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     background: linear-gradient(135deg, #fff, #ffe0e0);
     -webkit-background-clip: text;
     background-clip: text;
@@ -100,9 +116,9 @@
   }
 
   .slide-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.5;
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     max-width: 280px;
     margin: 0 auto;
   }
@@ -117,23 +133,23 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 16px;
-    padding: 8px 0;
+    margin-bottom: 14px;
+    padding: 6px 0;
   }
 
   .feature-item i {
-    width: 28px;
-    font-size: 1.2rem;
+    width: 24px;
+    font-size: 1rem;
     color: #ffcccb;
   }
 
   .feature-item span {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.9);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.95);
   }
 
   .bottom-nav {
-    padding: 20px 30px 40px;
+    padding: 20px 25px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -141,31 +157,31 @@
 
   .dots {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
   }
 
   .dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.4);
     transition: all 0.3s ease;
     cursor: pointer;
   }
 
   .dot.active {
-    width: 24px;
+    width: 22px;
     border-radius: 10px;
     background: white;
   }
 
   .btn-skip, .btn-next, .btn-get-started {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     border: none;
-    padding: 12px 24px;
+    padding: 10px 22px;
     border-radius: 40px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -173,7 +189,7 @@
   }
 
   .btn-skip {
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.9);
     background: transparent;
   }
 
@@ -185,14 +201,14 @@
   .btn-get-started {
     background: white;
     color: #E30613;
-    padding: 14px 32px;
-    font-size: 1rem;
+    padding: 12px 28px;
+    font-size: 0.9rem;
     animation: pulse 2s infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
-    50% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+    50% { transform: scale(1.02); box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
   }
 
   .btn-skip:active, .btn-next:active, .btn-get-started:active {
@@ -205,7 +221,8 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
   }
 
   .progress-fill {
@@ -213,103 +230,174 @@
     background: white;
     width: 0%;
     transition: width 0.3s ease;
+    border-radius: 3px;
   }
 
   .swipe-area::-webkit-scrollbar {
     display: none;
   }
 
+  /* Close button */
+  .close-onboarding {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+  }
+
+  .close-onboarding:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+
+  .close-onboarding i {
+    font-size: 1.2rem;
+    color: white;
+  }
+
   @media (max-width: 550px) {
-    .slide-title { font-size: 1.6rem; }
-    .slide-icon { width: 90px; height: 90px; }
-    .slide-icon i { font-size: 45px; }
-    .slide-description { font-size: 0.85rem; }
-    .btn-get-started { padding: 12px 28px; }
+    .glass-card {
+      margin: 15px;
+      border-radius: 36px;
+    }
+    .slide-title { font-size: 1.5rem; }
+    .slide-icon { width: 80px; height: 80px; }
+    .slide-icon i { font-size: 38px; }
+    .slide-description { font-size: 0.8rem; }
+    .btn-get-started { padding: 10px 24px; }
+    .close-onboarding { top: 15px; right: 15px; width: 35px; height: 35px; }
   }
 </style>
 </head>
 <body>
 
-<div id="onboardingContainer" class="onboarding-container">
-  <div class="progress-bar">
-    <div class="progress-fill" id="progressFill"></div>
+<!-- This div will be filled with wallet content behind the overlay -->
+<div id="walletBackground" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: auto; background: #f4f6fa;">
+  <!-- Wallet preview content will be injected here -->
+  <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px;">
+    <div style="text-align: center; opacity: 0.5;">
+      <i class="fas fa-wallet" style="font-size: 80px; color: #E30613; margin-bottom: 20px;"></i>
+      <p style="color: #64748b;">Rands Wallet loading...</p>
+    </div>
+  </div>
+</div>
+
+<!-- Onboarding Overlay -->
+<div id="onboardingOverlay" class="onboarding-overlay">
+  <div class="close-onboarding" id="closeOnboardingBtn">
+    <i class="fas fa-times"></i>
   </div>
   
-  <div class="swipe-area" id="swipeArea">
-    <div class="slides-wrapper" id="slidesWrapper">
-      <div class="slide">
-        <div class="slide-icon"><i class="fas fa-wallet"></i></div>
-        <h2 class="slide-title">Welcome to Rands Wallet</h2>
-        <p class="slide-description">Your secure digital wallet for everyday transactions, events, and more. #SeeYourVibe</p>
-      </div>
-
-      <div class="slide">
-        <div class="slide-icon"><i class="fab fa-whatsapp"></i></div>
-        <h2 class="slide-title">WhatsApp Powered</h2>
-        <p class="slide-description">Your phone number is your account ID. Simple, fast, and familiar.</p>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Instant login with WhatsApp</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>4-digit PIN security</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Share QR code to receive payments</span></div>
+  <div class="glass-card" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="swipe-area" id="swipeArea">
+      <div class="slides-wrapper" id="slidesWrapper">
+        <div class="slide">
+          <div class="slide-icon"><i class="fas fa-wallet"></i></div>
+          <h2 class="slide-title">Welcome to Rands Wallet</h2>
+          <p class="slide-description">Your secure digital wallet for everyday transactions, events, and more. #SeeYourVibe</p>
         </div>
-      </div>
 
-      <div class="slide">
-        <div class="slide-icon"><i class="fab fa-cc-mastercard"></i></div>
-        <h2 class="slide-title">Virtual Mastercard</h2>
-        <p class="slide-description">Get your own digital Mastercard with stunning designs. Tap to flip and view details.</p>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>12 beautiful card themes</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Secure CVV & expiry</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Tap card to flip</span></div>
+        <div class="slide">
+          <div class="slide-icon"><i class="fab fa-whatsapp"></i></div>
+          <h2 class="slide-title">WhatsApp Powered</h2>
+          <p class="slide-description">Your phone number is your account ID. Simple, fast, and familiar.</p>
+          <div class="feature-list">
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Instant login with WhatsApp</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>4-digit PIN security</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Share QR code to receive payments</span></div>
+          </div>
         </div>
-      </div>
 
-      <div class="slide">
-        <div class="slide-icon"><i class="fas fa-lock"></i></div>
-        <h2 class="slide-title">Secure Booze Locker</h2>
-        <p class="slide-description">Store your premium beverages securely. Unlock with WhatsApp + PIN verification.</p>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Two-factor authentication</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Request unlock anytime</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Staff verified release</span></div>
+        <div class="slide">
+          <div class="slide-icon"><i class="fab fa-cc-mastercard"></i></div>
+          <h2 class="slide-title">Virtual Mastercard</h2>
+          <p class="slide-description">Get your own digital Mastercard with stunning designs. Tap to flip and view details.</p>
+          <div class="feature-list">
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>12 beautiful card themes</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Secure CVV & expiry</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Tap card to flip</span></div>
+          </div>
         </div>
-      </div>
 
-      <div class="slide">
-        <div class="slide-icon"><i class="fas fa-ticket-alt"></i></div>
-        <h2 class="slide-title">Events & Tickets</h2>
-        <p class="slide-description">Buy tickets for Rands events, download PDF tickets, and scan QR codes for entry.</p>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Rands Summer Fest 2026</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Digital tickets with QR</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Share via WhatsApp</span></div>
+        <div class="slide">
+          <div class="slide-icon"><i class="fas fa-lock"></i></div>
+          <h2 class="slide-title">Secure Booze Locker</h2>
+          <p class="slide-description">Store your premium beverages securely. Unlock with WhatsApp + PIN verification.</p>
+          <div class="feature-list">
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Two-factor authentication</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Request unlock anytime</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Staff verified release</span></div>
+          </div>
         </div>
-      </div>
 
-      <div class="slide">
-        <div class="slide-icon"><i class="fas fa-crown"></i></div>
-        <h2 class="slide-title">VVIP Experience</h2>
-        <p class="slide-description">Get your exclusive VVIP wristband with QR code for premium entry and services.</p>
-        <div class="feature-list">
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Exclusive VVIP wristband</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Print your wristband</span></div>
-          <div class="feature-item"><i class="fas fa-check-circle"></i><span>Priority access & service</span></div>
+        <div class="slide">
+          <div class="slide-icon"><i class="fas fa-ticket-alt"></i></div>
+          <h2 class="slide-title">Events & Tickets</h2>
+          <p class="slide-description">Buy tickets for Rands events, download PDF tickets, and scan QR codes for entry.</p>
+          <div class="feature-list">
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Rands Summer Fest 2026</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Digital tickets with QR</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Share via WhatsApp</span></div>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="slide-icon"><i class="fas fa-crown"></i></div>
+          <h2 class="slide-title">VVIP Experience</h2>
+          <p class="slide-description">Get your exclusive VVIP wristband with QR code for premium entry and services.</p>
+          <div class="feature-list">
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Exclusive VVIP wristband</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Print your wristband</span></div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i><span>Priority access & service</span></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="bottom-nav">
-    <button class="btn-skip" id="skipBtn">Skip</button>
-    <div class="dots" id="dotsContainer"></div>
-    <button class="btn-next" id="nextBtn">Next</button>
+    <div class="bottom-nav">
+      <button class="btn-skip" id="skipBtn">Skip</button>
+      <div class="dots" id="dotsContainer"></div>
+      <button class="btn-next" id="nextBtn">Next</button>
+    </div>
   </div>
 </div>
 
 <script>
-  // Wait for DOM to fully load
   document.addEventListener('DOMContentLoaded', function() {
+    // Try to load the actual wallet in the background
+    function loadWalletInBackground() {
+      const bgContainer = document.getElementById('walletBackground');
+      if (bgContainer) {
+        // Create iframe to load wallet behind the overlay
+        const iframe = document.createElement('iframe');
+        iframe.src = 'wallet.html';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = 'none';
+        iframe.style.position = 'absolute';
+        iframe.style.top = '0';
+        iframe.style.left = '0';
+        iframe.style.right = '0';
+        iframe.style.bottom = '0';
+        bgContainer.innerHTML = '';
+        bgContainer.appendChild(iframe);
+      }
+    }
+    
     // Check if user has seen onboarding
     const hasSeenOnboarding = localStorage.getItem('rands_onboarding_seen');
     
@@ -319,7 +407,10 @@
       return;
     }
     
-    // Otherwise, show onboarding
+    // Load wallet in background
+    loadWalletInBackground();
+    
+    // Show onboarding overlay
     let currentIndex = 0;
     const totalSlides = 6;
     const slidesWrapper = document.getElementById('slidesWrapper');
@@ -327,13 +418,11 @@
     const nextBtn = document.getElementById('nextBtn');
     const skipBtn = document.getElementById('skipBtn');
     const progressFill = document.getElementById('progressFill');
-    const onboardingContainer = document.getElementById('onboardingContainer');
+    const onboardingOverlay = document.getElementById('onboardingOverlay');
+    const closeBtn = document.getElementById('closeOnboardingBtn');
     
     let touchStartX = 0;
     let touchEndX = 0;
-    
-    // Make sure container is visible
-    onboardingContainer.style.display = 'flex';
     
     function createDots() {
       dotsContainer.innerHTML = '';
@@ -390,9 +479,10 @@
     
     function completeOnboarding() {
       localStorage.setItem('rands_onboarding_seen', 'true');
-      onboardingContainer.classList.add('hide');
+      onboardingOverlay.classList.add('hide');
+      // The wallet is already loaded in the background, just remove overlay
       setTimeout(() => {
-        window.location.href = 'wallet.html';
+        onboardingOverlay.style.display = 'none';
       }, 500);
     }
     
@@ -422,6 +512,7 @@
     // Event listeners
     nextBtn.addEventListener('click', nextSlide);
     skipBtn.addEventListener('click', completeOnboarding);
+    closeBtn.addEventListener('click', completeOnboarding);
     
     const swipeArea = document.getElementById('swipeArea');
     swipeArea.addEventListener('touchstart', handleTouchStart);
