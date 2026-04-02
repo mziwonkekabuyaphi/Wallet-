@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>Rands Wallet | Splash Screen</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.png">
+<style>
+  /* Full screen container */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Inter', sans-serif;
+    background: linear-gradient(135deg, #E31B23, #FFFFFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Centered splash content */
+  .splash {
+    text-align: center;
+    color: white;
+    animation: fadeInUp 0.8s ease-out;
+    padding: 1rem;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Logo styling */
+  .logo-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: logoFloat 2s ease-in-out infinite;
+    position: relative;
+  }
+
+  @keyframes logoFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .logo {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.25));
+    transition: all 0.3s;
+    background: white;
+    padding: 8px;
+  }
+
+  /* Pulse ring around logo */
+  .logo-ring {
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%);
+    animation: ringPulse 1.8s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes ringPulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  .splash h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.25);
+    letter-spacing: -0.5px;
+    font-weight: 700;
+  }
+
+  /* Subtitle styling */
+  .version {
+    margin-top: 16px;
+    margin-bottom: 24px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.12);
+    display: inline-block;
+    padding: 6px 20px;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* Loading bar container */
+  .loading-bar {
+    width: 380px;
+    height: 4px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+
+  /* Animated loading progress */
+  .progress {
+    width: 0;
+    height: 100%;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(255,255,255,0.5);
+    transition: width 0.05s linear;
+  }
+
+  /* Loading Circle/Spinner */
+  .loading-circle {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid white;
+    border-right: 3px solid white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Dynamic status message */
+  .status-message {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pulse-dots {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .pulse-dots span {
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulseDot 1.4s infinite;
+  }
+
+  .pulse-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .pulse-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Tagline below bar */
+  .tagline {
+    margin-top: 24px;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 1px;
+    font-weight: 500;
+    animation: gentlePulse 2s ease-in-out infinite;
+  }
+
+  @keyframes gentlePulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+  }
+
+  /* Percentage indicator */
+  .percentage {
+    margin-top: 8px;
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.6);
+    font-family: monospace;
+    letter-spacing: 1px;
+  }
+
+  /* Wallet specific animations */
+  .wallet-badge {
+    margin-top: 30px;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 550px) {
+    .splash h1 {
+      font-size: 2.2rem;
+    }
+    .loading-bar {
+      width: 280px;
+    }
+    .tagline {
+      font-size: 0.85rem;
+    }
+    .status-message {
+      font-size: 0.75rem;
+    }
+    .logo {
+      width: 75px;
+      height: 75px;
+    }
+    .logo-ring {
+      width: 95px;
+      height: 95px;
+    }
+    .version {
+      font-size: 0.6rem;
+      padding: 4px 14px;
+      margin-top: 12px;
+      margin-bottom: 20px;
+    }
+    .spinner {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="splash">
+  <!-- Logo with Rands Wallet branding -->
+  <div class="logo-container" style="position: relative; display: inline-block;">
+    <div class="logo-ring"></div>
+    <img src="images/rands-logo.png" alt="Rands Wallet" class="logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23E30613\'/%3E%3Ctext x=\'50\' y=\'67\' font-size=\'45\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\'%3ER%3C/text%3E%3C/svg%3E'">
+  </div>
+  
+  <h1>Rands Wallet</h1>
+  <div class="version">✦ Secure Digital Wallet ✦</div>
+  <div class="loading-bar">
+    <div class="progress" id="progressFill"></div>
+  </div>
+  
+  <!-- Loading Circle -->
+  <div class="loading-circle">
+    <div class="spinner"></div>
+  </div>
+  
+  <div class="status-message" id="statusMessage">
+    <span>✨ Initializing Wallet</span>
+    <span class="pulse-dots">
+      <span>.</span><span>.</span><span>.</span>
+    </span>
+  </div>
+  <div class="percentage" id="percentage">0%</div>
+  <div class="tagline">#See Your Vibe</div>
+  <div class="wallet-badge">🔐 Secure • Fast • Reliable</div>
+</div>
+
+<script>
+  // Looping splash screen - infinite loop with redirect after first cycle
+  const totalDuration = 10000; // 10 seconds per cycle
+  const progressFill = document.getElementById('progressFill');
+  const statusElement = document.getElementById('statusMessage');
+  const percentageElement = document.getElementById('percentage');
+  
+  let animationFrameId = null;
+  let startTime = null;
+  let isRunning = true;
+  let hasRedirected = false;
+  
+  const messageStages = [
+    { threshold: 0, text: "✨ Initializing Wallet" },
+    { threshold: 15, text: "🔐 Verifying Security" },
+    { threshold: 30, text: "💳 Loading Virtual Card" },
+    { threshold: 45, text: "💰 Syncing Balance" },
+    { threshold: 60, text: "🔗 Connecting to Blockchain" },
+    { threshold: 75, text: "📱 Preparing Dashboard" },
+    { threshold: 85, text: "✨ Almost Ready" },
+    { threshold: 95, text: "🚀 Launching Rands Wallet" }
+  ];
+  
+  function updateMessageContent(text) {
+    const currentSpan = statusElement.querySelector('span:first-child');
+    const currentText = currentSpan ? currentSpan.innerText : '';
+    if (currentText !== text) {
+      statusElement.innerHTML = `
+        <span>${text}</span>
+        <span class="pulse-dots">
+          <span>.</span><span>.</span><span>.</span>
+        </span>
+      `;
+    }
+  }
+  
+  function updateStatus(progressPercent) {
+    // Update percentage display
+    percentageElement.textContent = `${Math.floor(progressPercent)}%`;
+    
+    // Update progress bar width
+    if (progressFill) {
+      progressFill.style.width = `${progressPercent}%`;
+    }
+    
+    // Determine which message to show based on progress
+    let currentMessage = messageStages[0].text;
+    for (let i = messageStages.length - 1; i >= 0; i--) {
+      if (progressPercent >= messageStages[i].threshold) {
+        currentMessage = messageStages[i].text;
+        break;
+      }
+    }
+    updateMessageContent(currentMessage);
+  }
+  
+  function redirectToWallet() {
+    if (!hasRedirected) {
+      hasRedirected = true;
+      // Redirect to the main wallet page
+      window.location.href = 'deepseek_html_20260401_93f869.html';
+    }
+  }
+  
+  function animateProgress(timestamp) {
+    if (!isRunning) return;
+    
+    if (!startTime) {
+      startTime = timestamp;
+    }
+    
+    const elapsed = timestamp - startTime;
+    let progress = (elapsed / totalDuration) * 100;
+    
+    if (progress >= 100) {
+      // First cycle complete - redirect to wallet
+      if (!hasRedirected) {
+        updateStatus(100);
+        updateMessageContent("🚀 Welcome to Rands Wallet!");
+        setTimeout(redirectToWallet, 300);
+      }
+      return;
+    }
+    
+    updateStatus(progress);
+    animationFrameId = requestAnimationFrame(animateProgress);
+  }
+  
+  // Start the loading animation
+  animationFrameId = requestAnimationFrame(animateProgress);
+  
+  // Optional: Clean up on page unload
+  window.addEventListener('beforeunload', () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+    isRunning = false;
+  });
+  
+  // Fallback redirect if animation fails (just in case)
+  setTimeout(() => {
+    if (!hasRedirected) {
+      redirectToWallet();
+    }
+  }, 11000);
+</script>
+
+</body>
+</html>
