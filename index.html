@@ -314,10 +314,11 @@
     updateMessageContent(currentMessage);
   }
   
-  function redirectToWallet() {
+  function redirectToNext() {
     if (!hasRedirected) {
       hasRedirected = true;
-      window.location.href = 'wallet.html';
+      // Redirect to onboarding page
+      window.location.href = 'onboarding.html';
     }
   }
   
@@ -328,7 +329,7 @@
     if (progress >= 100) {
       updateStatus(100);
       updateMessageContent("🚀 Welcome to Rands Wallet!");
-      setTimeout(redirectToWallet, 300);
+      setTimeout(redirectToNext, 300);
       return;
     }
     updateStatus(progress);
@@ -336,7 +337,7 @@
   }
   
   requestAnimationFrame(animateProgress);
-  setTimeout(() => { if (!hasRedirected) redirectToWallet(); }, 11000);
+  setTimeout(() => { if (!hasRedirected) redirectToNext(); }, 11000);
 </script>
 </body>
 </html>
