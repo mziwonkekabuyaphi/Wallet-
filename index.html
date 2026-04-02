@@ -15,7 +15,7 @@
         .app-container { max-width: 500px; width: 100%; margin: 0 auto; background: #ffffff; border-radius: 40px; box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08); overflow: hidden; position: relative; }
         .app-main { height: auto; max-height: 80vh; overflow-y: auto; scroll-behavior: smooth; padding-bottom: 8px; }
         .app-header { padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; background: white; border-bottom: 1px solid #eff3f8; }
-        .logo { height: 40px; width: auto; max-width: 180px; object-fit: contain; }
+        .logo { height: 45px; width: auto; max-width: 180px; object-fit: contain; border-radius: 12px; }
         .header-icons { display: flex; gap: 8px; }
         .header-icon { width: 40px; height: 40px; background: #f7f9fd; border-radius: 30px; display: inline-flex; align-items: center; justify-content: center; color: #E30613; font-size: 1.2rem; cursor: pointer; transition: 0.2s; }
         .header-icon:active { transform: scale(0.94); }
@@ -193,20 +193,63 @@
         .statement-header { padding: 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eff3f8; }
         .download-statement-btn { background: #E30613; color: white; border: none; padding: 8px 16px; border-radius: 30px; font-size: 0.7rem; cursor: pointer; }
         .blocked-warning { background: #fee2e2; color: #dc2626; padding: 12px; margin: 0 20px 16px; border-radius: 20px; text-align: center; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        
+        /* LOGIN SECTION - CIRCULAR LOGO */
         .login-container { padding: 40px 20px; text-align: center; }
-        .login-logo { width: 80px; height: 80px; margin: 0 auto 20px; display: block; object-fit: contain; }
-        .whatsapp-login-btn { background: #25D366; color: white; border: none; padding: 14px; border-radius: 60px; font-size: 1rem; font-weight: 600; cursor: pointer; width: 100%; margin-top: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .circular-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E30613, #b0020e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px -5px rgba(227,6,19,0.4);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .circular-logo:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px -5px rgba(227,6,19,0.5);
+        }
+        .circular-logo img {
+            width: 70%;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        /* ORIGINAL BUTTON CSS - RESTORED */
+        .whatsapp-login-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
         .whatsapp-login-btn:active { transform: scale(0.98); }
-        .locker-detail-card { background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 24px; padding: 20px; color: white; margin-top: 8px; }
-        .locker-items-list { background: rgba(255,255,255,0.1); border-radius: 16px; padding: 12px; margin: 12px 0; }
-        .locker-status-badge { background: #E30613; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
-        .btn-sm { background: #E30613; border: none; padding: 10px 16px; border-radius: 40px; color: white; font-weight: 600; font-size: 0.8rem; cursor: pointer; width: 100%; margin-top: 12px; }
-        .pending-badge-sm { background: #ff9800; color: #1e293b; padding: 2px 8px; border-radius: 20px; font-size: 0.6rem; margin-left: 8px; }
+        
+        /* Selfie Camera Styles */
+        .camera-container { text-align: center; margin: 15px 0; }
+        .video-preview { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 3px solid #E30613; margin: 0 auto; background: #f0f2f5; }
+        .camera-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+        .camera-btn { background: #E30613; color: white; border: none; padding: 10px 20px; border-radius: 40px; font-weight: 600; cursor: pointer; }
+        .selfie-preview { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 10px auto; display: block; border: 2px solid #10b981; }
         
         /* Profile Tab Styles */
         .profile-container { padding: 20px; }
         .profile-header { text-align: center; margin-bottom: 24px; }
-        .profile-avatar { width: 80px; height: 80px; background: #E30613; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 2.5rem; color: white; }
+        .profile-avatar { width: 100px; height: 100px; background: linear-gradient(135deg, #E30613, #b0020e); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 2.5rem; color: white; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(227,6,19,0.3); }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .profile-name { font-size: 1.3rem; font-weight: 700; color: #1e293b; }
         .profile-phone { color: #64748b; font-size: 0.85rem; margin-top: 4px; }
         .profile-stats { display: flex; gap: 16px; margin: 20px 0; }
@@ -218,6 +261,7 @@
         .menu-text { flex: 1; font-weight: 500; }
         .menu-arrow { color: #94a3b8; }
         .menu-item:active { opacity: 0.7; }
+        .verified-badge { background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; }
     </style>
 </head>
 <body>
@@ -225,10 +269,13 @@
     <!-- LOGIN SECTION -->
     <div id="loginSection" style="display: none;">
         <div class="app-header">
-            <img src="images/rands-logo.png" alt="Rands Wallet" class="logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23E30613\'/%3E%3Ctext x=\'50\' y=\'65\' font-size=\'40\' text-anchor=\'middle\' fill=\'white\'%3ER%3C/text%3E%3C/svg%3E'">
+            <div class="logo"></div>
         </div>
         <div class="login-container">
-            <img src="images/rands-logo.png" alt="Rands Wallet" class="login-logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%23E30613\'/%3E%3Ctext x=\'50\' y=\'65\' font-size=\'40\' text-anchor=\'middle\' fill=\'white\'%3ER%3C/text%3E%3C/svg%3E'">
+            <!-- CIRCULAR LOGO -->
+            <div class="circular-logo">
+                <img src="images/rands-logo.png" alt="Rands Wallet" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23E30613\'/%3E%3Ctext x=\'50\' y=\'67\' font-size=\'45\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\'%3ER%3C/text%3E%3C/svg%3E'">
+            </div>
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2 style="margin-top: 20px;">Rands Wallet</h2>
                 <p style="color: #64748b;">Your WhatsApp number is your account ID</p>
@@ -244,6 +291,28 @@
                 <input type="tel" id="signupWhatsapp" class="input-field" placeholder="WhatsApp Number (e.g., +27712345678)" style="margin-bottom: 15px;">
                 <input type="text" id="signupName" class="input-field" placeholder="Full Name" style="margin-bottom: 15px;">
                 <input type="password" id="signupPin" class="input-field" placeholder="Create 4-digit PIN" maxlength="4" style="margin-bottom: 15px;">
+                
+                <!-- Selfie Verification Section -->
+                <div id="selfieSection" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">📸 Account Verification (Selfie Required)</label>
+                    <div class="camera-container">
+                        <video id="selfieVideo" class="video-preview" autoplay playsinline style="display: none;"></video>
+                        <canvas id="selfieCanvas" style="display: none;"></canvas>
+                        <img id="selfiePreview" class="selfie-preview" style="display: none;">
+                        <div id="selfiePlaceholder" style="width: 200px; height: 200px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; margin: 0 auto; color: #94a3b8; flex-direction: column;">
+                            <i class="fas fa-camera" style="font-size: 48px; margin-bottom: 8px;"></i>
+                            <span style="font-size: 12px;">Take a selfie</span>
+                        </div>
+                        <div class="camera-buttons">
+                            <button type="button" class="camera-btn" id="startCameraBtn"><i class="fas fa-camera"></i> Take Selfie</button>
+                            <button type="button" class="camera-btn" id="captureSelfieBtn" style="display: none; background: #10b981;"><i class="fas fa-check"></i> Capture</button>
+                            <button type="button" class="camera-btn" id="retakeSelfieBtn" style="display: none;"><i class="fas fa-redo"></i> Retake</button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="selfieData" value="">
+                    <p id="selfieError" style="color: #E30613; font-size: 0.7rem; margin-top: 8px; text-align: center;"></p>
+                </div>
+                
                 <button class="whatsapp-login-btn" id="createAccountBtn" style="background: #25D366;"><i class="fab fa-whatsapp"></i> Create Account</button>
                 <p style="text-align: center; margin-top: 15px;"><button id="backToLoginBtn" style="background: none; border: none; color: #E30613; cursor: pointer;">← Back to Login</button></p>
             </div>
@@ -286,7 +355,6 @@
                 </div>
                 <div id="blockedBanner" style="display:none;" class="blocked-warning"><i class="fas fa-ban"></i> Your account has been blocked.</div>
                 
-                <!-- VIRTUAL CARD SECTION -->
                 <div class="card-section">
                     <div class="section-header"><h3>✦ RANDS VIRTUAL CARD</h3></div>
                     <div class="card-wrapper" id="cardFlipWrapper">
@@ -379,7 +447,7 @@
                 <div class="ticket-module"><div class="section-title"><span>🎟️ My Tickets</span><span id="ticketsTabCountBadge">0</span></div><div id="myTicketsListArea" style="padding: 0 16px 16px 16px;"></div></div>
                 <div class="ticket-module"><div class="section-title"><span>🛍️ Available Events</span></div><div id="eventShopListArea" style="padding: 0 16px 16px 16px;"></div></div>
             </div>
-            <!-- PROFILE TAB (FUNCTIONAL) -->
+            <!-- PROFILE TAB -->
             <div id="profileTab" class="tab-content">
                 <div class="profile-container">
                     <div class="profile-header">
@@ -388,6 +456,7 @@
                         </div>
                         <div class="profile-name" id="profileName">John Doe</div>
                         <div class="profile-phone" id="profilePhone">+27712345678</div>
+                        <div class="verified-badge"><i class="fas fa-check-circle"></i> Identity Verified</div>
                     </div>
                     <div class="profile-stats">
                         <div class="stat-box">
@@ -498,6 +567,10 @@
     let lockers = [];
     let pendingUnlocks = [];
     
+    // Selfie capture variables
+    let stream = null;
+    let capturedSelfie = null;
+    
     // ========== CARD THEMES ==========
     const cardThemes = {
         'card-theme-1': { name: 'Classic Red', color: '#E30613' },
@@ -517,6 +590,83 @@
     function getRandomCardTheme() {
         const themes = Object.keys(cardThemes);
         return themes[Math.floor(Math.random() * themes.length)];
+    }
+    
+    // ========== SELFIE FUNCTIONS ==========
+    async function startCamera() {
+        const video = document.getElementById('selfieVideo');
+        const placeholder = document.getElementById('selfiePlaceholder');
+        const startBtn = document.getElementById('startCameraBtn');
+        const captureBtn = document.getElementById('captureSelfieBtn');
+        const retakeBtn = document.getElementById('retakeSelfieBtn');
+        
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+            video.style.display = 'block';
+            placeholder.style.display = 'none';
+            startBtn.style.display = 'none';
+            captureBtn.style.display = 'inline-block';
+            retakeBtn.style.display = 'none';
+            document.getElementById('selfieError').innerHTML = '';
+        } catch (err) {
+            document.getElementById('selfieError').innerHTML = 'Camera access denied. Please allow camera to verify your identity.';
+            console.error(err);
+        }
+    }
+    
+    function captureSelfie() {
+        const video = document.getElementById('selfieVideo');
+        const canvas = document.getElementById('selfieCanvas');
+        const preview = document.getElementById('selfiePreview');
+        const captureBtn = document.getElementById('captureSelfieBtn');
+        const retakeBtn = document.getElementById('retakeSelfieBtn');
+        const startBtn = document.getElementById('startCameraBtn');
+        const placeholder = document.getElementById('selfiePlaceholder');
+        
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
+        video.style.display = 'none';
+        
+        capturedSelfie = canvas.toDataURL('image/jpeg', 0.8);
+        preview.src = capturedSelfie;
+        preview.style.display = 'block';
+        document.getElementById('selfieData').value = capturedSelfie;
+        
+        captureBtn.style.display = 'none';
+        retakeBtn.style.display = 'inline-block';
+        startBtn.style.display = 'none';
+        placeholder.style.display = 'none';
+        document.getElementById('selfieError').innerHTML = '<span style="color:#10b981;">✓ Selfie captured successfully!</span>';
+    }
+    
+    function retakeSelfie() {
+        const video = document.getElementById('selfieVideo');
+        const preview = document.getElementById('selfiePreview');
+        const captureBtn = document.getElementById('captureSelfieBtn');
+        const retakeBtn = document.getElementById('retakeSelfieBtn');
+        const startBtn = document.getElementById('startCameraBtn');
+        const placeholder = document.getElementById('selfiePlaceholder');
+        
+        preview.style.display = 'none';
+        capturedSelfie = null;
+        document.getElementById('selfieData').value = '';
+        
+        startCamera();
+    }
+    
+    function stopCamera() {
+        if (stream) {
+            stream.getTracks().forEach(track => track.stop());
+            stream = null;
+        }
     }
     
     // ========== HELPER FUNCTIONS ==========
@@ -633,7 +783,7 @@
             accounts = JSON.parse(stored);
             accounts.forEach(acc => { if (!acc.cardTheme) acc.cardTheme = getRandomCardTheme(); });
         } else { 
-            accounts = [{ id: "+27712345678", name: "John Doe", whatsapp: "+27712345678", phone: "+27 71 234 5678", balance: 5000, cardNumber: "4532 1234 5678 9012", cvv: "123", expiry: "12/28", pin: "1234", status: "Active", cardTheme: "card-theme-1" }]; 
+            accounts = [{ id: "+27712345678", name: "John Doe", whatsapp: "+27712345678", phone: "+27 71 234 5678", balance: 5000, cardNumber: "4532 1234 5678 9012", cvv: "123", expiry: "12/28", pin: "1234", status: "Active", cardTheme: "card-theme-1", selfie: null, verified: true }]; 
             saveAccounts(); 
         } 
     }
@@ -661,23 +811,62 @@
         if (!name || name.trim().length < 2) { showToastMsg("Please enter your full name"); return false; }
         if (!pin || pin.length !== 4 || !/^\d+$/.test(pin)) { showToastMsg("Please create a valid 4-digit PIN"); return false; }
         
+        const selfieData = document.getElementById('selfieData').value;
+        if (!selfieData) {
+            showToastMsg("⚠️ Please take a selfie for account verification");
+            return false;
+        }
+        
+        const randomTheme = getRandomCardTheme();
         const newAccount = {
-            id: cleanNumber, name: name.trim(), whatsapp: cleanNumber, phone: cleanNumber, balance: 100,
+            id: cleanNumber, 
+            name: name.trim(), 
+            whatsapp: cleanNumber, 
+            phone: cleanNumber, 
+            balance: 100,
             cardNumber: "4532 " + Math.floor(1000 + Math.random() * 9000) + " " + Math.floor(1000 + Math.random() * 9000) + " " + Math.floor(1000 + Math.random() * 9000),
-            cvv: Math.floor(100 + Math.random() * 900).toString(), expiry: "12/28", pin: pin, status: "Active",
-            createdAt: new Date().toISOString(), cardTheme: getRandomCardTheme()
+            cvv: Math.floor(100 + Math.random() * 900).toString(), 
+            expiry: "12/28", 
+            pin: pin, 
+            status: "Active",
+            createdAt: new Date().toISOString(), 
+            cardTheme: randomTheme,
+            selfie: selfieData,
+            verified: true,
+            verifiedAt: new Date().toISOString()
         };
         accounts.push(newAccount);
         saveAccounts();
         currentAccountId = newAccount.id;
         localStorage.setItem('rands_current_account', currentAccountId);
-        showToastMsg(`🎉 Welcome to Rands Wallet, ${name.trim().split(' ')[0]}!`);
+        
+        stopCamera();
+        
+        showToastMsg(`🎉 Welcome to Rands Wallet, ${name.trim().split(' ')[0]}! Account verified with selfie.`);
         loadLockers();
         loadPendingUnlocks();
         return true;
     }
     
-    function logout() { currentAccountId = null; localStorage.removeItem('rands_current_account'); showLoginScreen(); showToastMsg("Logged out successfully"); }
+    function logout() { 
+        currentAccountId = null; 
+        localStorage.removeItem('rands_current_account'); 
+        showLoginScreen(); 
+        showToastMsg("Logged out successfully"); 
+        document.getElementById('signupWhatsapp').value = '';
+        document.getElementById('signupName').value = '';
+        document.getElementById('signupPin').value = '';
+        document.getElementById('selfieData').value = '';
+        document.getElementById('selfiePreview').style.display = 'none';
+        document.getElementById('selfieVideo').style.display = 'none';
+        document.getElementById('selfiePlaceholder').style.display = 'flex';
+        document.getElementById('startCameraBtn').style.display = 'inline-block';
+        document.getElementById('captureSelfieBtn').style.display = 'none';
+        document.getElementById('retakeSelfieBtn').style.display = 'none';
+        capturedSelfie = null;
+        stopCamera();
+    }
+    
     function showLoginScreen() { document.getElementById('loginSection').style.display = 'block'; document.getElementById('walletSection').style.display = 'none'; }
     function showWalletScreen() { document.getElementById('loginSection').style.display = 'none'; document.getElementById('walletSection').style.display = 'block'; }
     
@@ -718,8 +907,13 @@
         document.getElementById('profileTransactions').innerText = txCount;
         const userTickets = tickets.filter(t => t.walletId === currentAccountId).length;
         document.getElementById('profileTickets').innerText = userTickets;
-        const firstLetter = acc.name.charAt(0).toUpperCase();
-        document.getElementById('profileAvatar').innerHTML = `<span style="font-size: 2rem;">${firstLetter}</span>`;
+        const avatarDiv = document.getElementById('profileAvatar');
+        if (acc.selfie) {
+            avatarDiv.innerHTML = `<img src="${acc.selfie}" alt="Profile">`;
+        } else {
+            const firstLetter = acc.name.charAt(0).toUpperCase();
+            avatarDiv.innerHTML = `<span style="font-size: 2rem;">${firstLetter}</span>`;
+        }
     }
     
     function updateAllUI() {
@@ -764,7 +958,6 @@
         updatePendingIndicator();
         updateProfileTab();
         
-        // VVIP
         if (vvipBands[acc.id]) {
             document.getElementById('vvipBandNumber').textContent = vvipBands[acc.id].bandId;
             document.getElementById('bandIdDisplay').textContent = vvipBands[acc.id].bandId;
@@ -809,14 +1002,26 @@
             showLoginScreen();
         }
         
+        // Selfie button handlers
+        document.getElementById("startCameraBtn")?.addEventListener("click", startCamera);
+        document.getElementById("captureSelfieBtn")?.addEventListener("click", captureSelfie);
+        document.getElementById("retakeSelfieBtn")?.addEventListener("click", retakeSelfie);
+        
         // Login/Signup
         document.getElementById("loginBtn")?.addEventListener("click", () => {
             if(login(document.getElementById("loginWhatsapp").value, document.getElementById("loginPin").value)) {
                 showWalletScreen(); updateAllUI();
             }
         });
-        document.getElementById("showSignupBtn")?.addEventListener("click", () => { document.getElementById("loginForm").style.display = "none"; document.getElementById("signupForm").style.display = "block"; });
-        document.getElementById("backToLoginBtn")?.addEventListener("click", () => { document.getElementById("signupForm").style.display = "none"; document.getElementById("loginForm").style.display = "block"; });
+        document.getElementById("showSignupBtn")?.addEventListener("click", () => { 
+            document.getElementById("loginForm").style.display = "none"; 
+            document.getElementById("signupForm").style.display = "block"; 
+        });
+        document.getElementById("backToLoginBtn")?.addEventListener("click", () => { 
+            document.getElementById("signupForm").style.display = "none"; 
+            document.getElementById("loginForm").style.display = "block";
+            stopCamera();
+        });
         document.getElementById("createAccountBtn")?.addEventListener("click", () => {
             if(createNewAccount(document.getElementById("signupWhatsapp").value, document.getElementById("signupName").value, document.getElementById("signupPin").value)) {
                 showWalletScreen(); updateAllUI();
@@ -824,8 +1029,6 @@
         });
         document.getElementById("logoutHeaderBtn")?.addEventListener("click", logout);
         document.getElementById("posModeBtn")?.addEventListener("click", switchToPOS);
-        
-        // Profile button in header
         document.getElementById("profileBtn")?.addEventListener("click", () => { if(currentAccountId) switchTab('profile'); });
         
         // Profile menu items
@@ -833,7 +1036,7 @@
         document.getElementById("securitySettingsBtn")?.addEventListener("click", () => showToastMsg("Security settings coming soon"));
         document.getElementById("notificationSettingsBtn")?.addEventListener("click", () => showToastMsg("Notification settings coming soon"));
         document.getElementById("helpCenterBtn")?.addEventListener("click", () => showToastMsg("Help center coming soon"));
-        document.getElementById("aboutBtn")?.addEventListener("click", () => showToastMsg("Rands Wallet v2.0 - Secure WhatsApp Wallet"));
+        document.getElementById("aboutBtn")?.addEventListener("click", () => showToastMsg("Rands Wallet v2.0 - Secure WhatsApp Wallet with Selfie Verification"));
         
         // Locker button
         document.getElementById("boozeLockerItem")?.addEventListener("click", () => { if(currentAccountId) showLockerModal(); else showToastMsg("Please login first"); });
