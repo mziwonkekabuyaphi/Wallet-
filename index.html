@@ -272,23 +272,22 @@
             <div class="logo"></div>
         </div>
         <div class="login-container">
-            <!-- CIRCULAR LOGO -->
             <div class="circular-logo">
                 <img src="images/rands-logo.png" alt="Rands Wallet" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23E30613\'/%3E%3Ctext x=\'50\' y=\'67\' font-size=\'45\' text-anchor=\'middle\' fill=\'white\' font-family=\'Arial\'%3ER%3C/text%3E%3C/svg%3E'">
             </div>
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2 style="margin-top: 20px;">Rands Wallet</h2>
-                <p style="color: #64748b;">Your WhatsApp number is your account ID</p>
+                <p style="color: #64748b;">Your phone number is your account ID</p>
             </div>
             <div id="loginForm">
-                <input type="tel" id="loginWhatsapp" class="input-field" placeholder="WhatsApp Number (e.g., +27712345678)" style="margin-bottom: 15px;" value="+27712345678">
+                <input type="tel" id="loginWhatsapp" class="input-field" placeholder="Phone Number (e.g., 0635713652)" style="margin-bottom: 15px;" value="0635713652">
                 <input type="password" id="loginPin" class="input-field" placeholder="4-digit PIN" maxlength="4" value="1234">
                 <button class="whatsapp-login-btn" id="loginBtn"><i class="fab fa-whatsapp"></i> Login</button>
                 <p style="text-align: center; margin: 15px 0; color: #64748b;">or</p>
                 <button class="whatsapp-login-btn" id="showSignupBtn" style="background: #E30613;"><i class="fas fa-user-plus"></i> Create New Account</button>
             </div>
             <div id="signupForm" style="display: none;">
-                <input type="tel" id="signupWhatsapp" class="input-field" placeholder="WhatsApp Number (e.g., +27712345678)" style="margin-bottom: 15px;">
+                <input type="tel" id="signupWhatsapp" class="input-field" placeholder="Phone Number (e.g., 0635713652)" style="margin-bottom: 15px;">
                 <input type="text" id="signupName" class="input-field" placeholder="Full Name" style="margin-bottom: 15px;">
                 <input type="password" id="signupPin" class="input-field" placeholder="Create 4-digit PIN" maxlength="4" style="margin-bottom: 15px;">
                 
@@ -455,7 +454,7 @@
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="profile-name" id="profileName">John Doe</div>
-                        <div class="profile-phone" id="profilePhone">+27712345678</div>
+                        <div class="profile-phone" id="profilePhone">0635713652</div>
                         <div class="verified-badge"><i class="fas fa-check-circle"></i> Identity Verified</div>
                     </div>
                     <div class="profile-stats">
@@ -541,7 +540,7 @@
 
     <!-- OTHER MODALS -->
     <div id="receivePaymentModal" class="modal"><div class="modal-card"><h3>Receive Payment</h3><div class="receive-qr-container"><div id="receiveQrCode"></div><div class="receive-account-id"><span id="receiveAccountIdText"></span><button class="copy-id-btn" id="copyAccountIdBtn">Copy</button></div><div class="receive-instruction">Scan QR with any Rands Wallet to send money.</div></div><div class="modal-btns"><button class="modal-btn btn-cancel" id="closeReceiveModalBtn">Close</button></div></div></div>
-    <div id="sendMoneyModal" class="modal"><div class="modal-card"><h3>Send Money</h3><input type="text" id="recipientAccountId" class="input-field" placeholder="Recipient WhatsApp Number"><input type="number" id="sendAmount" class="amount-field" placeholder="Amount (R)"><input type="password" id="senderPin" class="input-field" placeholder="Your 4-digit PIN" maxlength="4"><div class="modal-btns"><button class="modal-btn btn-cancel" id="closeSendMoneyBtn">Cancel</button><button class="modal-btn btn-confirm" id="confirmSendMoneyBtn">Send Money</button></div></div></div>
+    <div id="sendMoneyModal" class="modal"><div class="modal-card"><h3>Send Money</h3><input type="text" id="recipientAccountId" class="input-field" placeholder="Recipient Phone Number"><input type="number" id="sendAmount" class="amount-field" placeholder="Amount (R)"><input type="password" id="senderPin" class="input-field" placeholder="Your 4-digit PIN" maxlength="4"><div class="modal-btns"><button class="modal-btn btn-cancel" id="closeSendMoneyBtn">Cancel</button><button class="modal-btn btn-confirm" id="confirmSendMoneyBtn">Send Money</button></div></div></div>
     <div id="addMoneyModal" class="modal"><div class="modal-card"><h3>Add Money</h3><input type="number" id="addAmountInput" class="amount-field" placeholder="Amount (R)"><div class="amount-chip-group"><button class="amount-chip" onclick="setAddAmount(100)">R100</button><button class="amount-chip" onclick="setAddAmount(500)">R500</button><button class="amount-chip" onclick="setAddAmount(1000)">R1000</button></div><div class="modal-btns"><button class="modal-btn btn-cancel" id="closeAddMoneyBtn">Cancel</button></div></div></div>
     <div id="paymentApprovalModal" class="modal"><div class="modal-card"><h3 style="color: #E30613;">💰 Payment Request</h3><div id="approvalDetails" style="margin:20px 0; text-align:center;"><div style="background: #f8fafc; border-radius: 20px; padding: 20px;"><p style="font-size: 1.5rem; font-weight: 800; color: #E30613;" id="approvalAmount">R0.00</p><p style="font-size: 0.9rem; color: #64748b; margin-top: 10px;">From: <strong>Rands Kiosk</strong></p><p style="font-size: 0.85rem; color: #475569; margin-top: 8px;" id="approvalDesc">-</p></div></div><div class="modal-btns"><button class="modal-btn btn-cancel" id="rejectPaymentBtn">Reject</button><button class="modal-btn btn-confirm" id="acceptPaymentBtn">Accept Payment</button></div></div></div>
     <div id="globalToast" class="toast-msg"></div>
@@ -621,8 +620,6 @@
         const preview = document.getElementById('selfiePreview');
         const captureBtn = document.getElementById('captureSelfieBtn');
         const retakeBtn = document.getElementById('retakeSelfieBtn');
-        const startBtn = document.getElementById('startCameraBtn');
-        const placeholder = document.getElementById('selfiePlaceholder');
         
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
@@ -642,23 +639,14 @@
         
         captureBtn.style.display = 'none';
         retakeBtn.style.display = 'inline-block';
-        startBtn.style.display = 'none';
-        placeholder.style.display = 'none';
         document.getElementById('selfieError').innerHTML = '<span style="color:#10b981;">✓ Selfie captured successfully!</span>';
     }
     
     function retakeSelfie() {
-        const video = document.getElementById('selfieVideo');
         const preview = document.getElementById('selfiePreview');
-        const captureBtn = document.getElementById('captureSelfieBtn');
-        const retakeBtn = document.getElementById('retakeSelfieBtn');
-        const startBtn = document.getElementById('startCameraBtn');
-        const placeholder = document.getElementById('selfiePlaceholder');
-        
         preview.style.display = 'none';
         capturedSelfie = null;
         document.getElementById('selfieData').value = '';
-        
         startCamera();
     }
     
@@ -682,7 +670,7 @@
             lockers = JSON.parse(stored);
         } else {
             lockers = [
-                { id: 1, lockerNumber: 1, customer: "John Doe", phone: "+27712345678", pin: "1234", items: [{ name: "Heineken 6-pack", price: 89.99 }, { name: "Jameson Whiskey", price: 249.99 }], itemsText: "Heineken 6-pack, Jameson Whiskey", status: "Occupied", balance: 339.98, registrationTime: new Date().toISOString() },
+                { id: 1, lockerNumber: 1, customer: "John Doe", phone: "0635713652", pin: "1234", items: [{ name: "Heineken 6-pack", price: 89.99 }, { name: "Jameson Whiskey", price: 249.99 }], itemsText: "Heineken 6-pack, Jameson Whiskey", status: "Occupied", balance: 339.98, registrationTime: new Date().toISOString() },
                 { id: 2, lockerNumber: 2, customer: "", phone: "", pin: "", items: [], itemsText: "", status: "Available", balance: 0, registrationTime: null }
             ];
             localStorage.setItem(LOCKERS_KEY, JSON.stringify(lockers));
@@ -783,14 +771,13 @@
             accounts = JSON.parse(stored);
             accounts.forEach(acc => { if (!acc.cardTheme) acc.cardTheme = getRandomCardTheme(); });
         } else { 
-            accounts = [{ id: "+27712345678", name: "John Doe", whatsapp: "+27712345678", phone: "+27 71 234 5678", balance: 5000, cardNumber: "4532 1234 5678 9012", cvv: "123", expiry: "12/28", pin: "1234", status: "Active", cardTheme: "card-theme-1", selfie: null, verified: true }]; 
+            accounts = [{ id: "0635713652", name: "John Doe", phone: "0635713652", balance: 5000, cardNumber: "4532 1234 5678 9012", cvv: "123", expiry: "12/28", pin: "1234", status: "Active", cardTheme: "card-theme-1", selfie: null, verified: true }]; 
             saveAccounts(); 
         } 
     }
     
-    function login(whatsappNumber, pin) {
-        let cleanNumber = whatsappNumber.trim();
-        if (!cleanNumber.startsWith('+')) cleanNumber = '+' + cleanNumber;
+    function login(phoneNumber, pin) {
+        let cleanNumber = phoneNumber.trim();
         const account = accounts.find(a => a.id === cleanNumber);
         if (!account) { showToastMsg("Account not found. Please create an account first."); return false; }
         if (account.pin !== pin) { showToastMsg("Incorrect PIN"); return false; }
@@ -803,10 +790,9 @@
         return true;
     }
     
-    function createNewAccount(whatsappNumber, name, pin) {
-        let cleanNumber = whatsappNumber.trim();
-        if (!cleanNumber.startsWith('+')) cleanNumber = '+' + cleanNumber;
-        if (!/^\+[0-9]{10,15}$/.test(cleanNumber)) { showToastMsg("Valid WhatsApp number required (e.g., +27712345678)"); return false; }
+    function createNewAccount(phoneNumber, name, pin) {
+        let cleanNumber = phoneNumber.trim();
+        if (!/^[0-9]{10,15}$/.test(cleanNumber)) { showToastMsg("Valid phone number required (e.g., 0635713652)"); return false; }
         if (accounts.find(a => a.id === cleanNumber)) { showToastMsg("Account already exists. Please login instead."); return false; }
         if (!name || name.trim().length < 2) { showToastMsg("Please enter your full name"); return false; }
         if (!pin || pin.length !== 4 || !/^\d+$/.test(pin)) { showToastMsg("Please create a valid 4-digit PIN"); return false; }
@@ -821,7 +807,6 @@
         const newAccount = {
             id: cleanNumber, 
             name: name.trim(), 
-            whatsapp: cleanNumber, 
             phone: cleanNumber, 
             balance: 100,
             cardNumber: "4532 " + Math.floor(1000 + Math.random() * 9000) + " " + Math.floor(1000 + Math.random() * 9000) + " " + Math.floor(1000 + Math.random() * 9000),
@@ -870,13 +855,12 @@
     function showLoginScreen() { document.getElementById('loginSection').style.display = 'block'; document.getElementById('walletSection').style.display = 'none'; }
     function showWalletScreen() { document.getElementById('loginSection').style.display = 'none'; document.getElementById('walletSection').style.display = 'block'; }
     
-    function sendMoney(recipientWhatsapp, amount, pin) {
+    function sendMoney(recipientPhone, amount, pin) {
         const sender = getCurrentAccount();
         if (!sender) { showToastMsg("No account found"); return false; }
         if (sender.pin !== pin) { showToastMsg("Incorrect PIN"); return false; }
         if (sender.balance < amount) { showToastMsg("Insufficient balance"); return false; }
-        let cleanRecipient = recipientWhatsapp.trim();
-        if (!cleanRecipient.startsWith('+')) cleanRecipient = '+' + cleanRecipient;
+        let cleanRecipient = recipientPhone.trim();
         const recipient = accounts.find(a => a.id === cleanRecipient);
         if (!recipient) { showToastMsg("Recipient not found"); return false; }
         
