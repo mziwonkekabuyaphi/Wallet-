@@ -348,7 +348,7 @@
   // Service Worker Registration
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('/Wallet-/sw.js')
         .then(reg => console.log('✅ Service Worker registered:', reg.scope))
         .catch(err => console.error('❌ Service Worker registration failed:', err));
     });
@@ -436,8 +436,8 @@
   function redirectToNext() {
     if (!hasRedirected) {
       hasRedirected = true;
-      // Redirect to onboarding/dashboard page
-      window.location.href = 'dashboard.html';
+      // Redirect to wallet.html
+      window.location.href = 'wallet.html';
     }
   }
   
