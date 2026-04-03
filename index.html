@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-<title>Rands Wallet | Splash Screen</title>
+<title>Rands Wallet | Premium Digital Wallet</title>
+<meta name="description" content="Rands Wallet - Secure, fast, and modern digital wallet for everyday transactions">
+<meta name="theme-color" content="#E31B23">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rands Wallet">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192x192.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -246,6 +253,61 @@
     .logo-3d { width: 100px; height: 100px; }
     .pulse-ring { width: 120px; height: 120px; }
   }
+
+  /* Install prompt styling */
+  .install-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    animation: slideUp 0.5s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .install-banner p {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .install-banner button {
+    background: #E31B23;
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .install-banner button:hover {
+    background: #ff2a33;
+    transform: scale(1.02);
+  }
+
+  .close-install {
+    background: transparent !important;
+    padding: 8px !important;
+    font-size: 1.2rem !important;
+    margin-left: 8px;
+  }
 </style>
 </head>
 <body>
@@ -253,7 +315,7 @@
   <div class="logo-3d">
     <div class="flip-card">
       <div class="flip-front">
-        <img src="images/rands-logo2.png" alt="Rands Wallet" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%23E30613\'/%3E%3Ctext x=\'50\' y=\'67\' font-size=\'45\' text-anchor=\'middle\' fill=\'white\'%3ER%3C/text%3E%3C/svg%3E'">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23E30613'/%3E%3Ctext x='50' y='67' font-size='45' text-anchor='middle' fill='white' font-weight='bold'%3ER%3C/text%3E%3C/svg%3E" alt="Rands Wallet">
       </div>
       <div class="flip-back">
         <i class="fas fa-crown"></i>
@@ -272,8 +334,65 @@
   <div class="percentage" id="percentage">0%</div>
   <div class="tagline">#See Your Vibe</div>
 </div>
+
+<div id="installBanner" class="install-banner" style="display: none;">
+  <p>📱 <strong>Add to Home Screen</strong> — Get app-like experience</p>
+  <div>
+    <button id="installBtn">Install</button>
+    <button id="closeInstallBtn" class="close-install">✕</button>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <script>
+  // Service Worker Registration
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+        .catch(err => console.error('❌ Service Worker registration failed:', err));
+    });
+  }
+
+  // PWA Installation handling
+  let deferredPrompt;
+  const installBanner = document.getElementById('installBanner');
+  const installBtn = document.getElementById('installBtn');
+  const closeInstallBtn = document.getElementById('closeInstallBtn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Show custom install banner (only if not dismissed before)
+    if (!localStorage.getItem('installDismissed')) {
+      installBanner.style.display = 'flex';
+    }
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`User response to install: ${outcome}`);
+      deferredPrompt = null;
+      installBanner.style.display = 'none';
+      localStorage.setItem('installDismissed', 'true');
+    }
+  });
+
+  closeInstallBtn.addEventListener('click', () => {
+    installBanner.style.display = 'none';
+    localStorage.setItem('installDismissed', 'true');
+  });
+
+  // Also detect if already installed (iOS / Android)
+  window.addEventListener('appinstalled', () => {
+    console.log('✅ App installed successfully');
+    installBanner.style.display = 'none';
+    deferredPrompt = null;
+  });
+
+  // Splash animation & redirect
   const totalDuration = 10000;
   const progressFill = document.getElementById('progressFill');
   const statusElement = document.getElementById('statusMessage');
@@ -317,8 +436,8 @@
   function redirectToNext() {
     if (!hasRedirected) {
       hasRedirected = true;
-      // Redirect to onboarding page
-      window.location.href = 'onboarding.html';
+      // Redirect to onboarding/dashboard page
+      window.location.href = 'dashboard.html';
     }
   }
   
