@@ -1,4 +1,7 @@
 // Rands Wallet Service Worker for GitHub Pages
+// Repository: https://github.com/mziwonkekabuyaphi/Wallet-
+// Live URL: https://mziwonkekabuyaphi.github.io/Wallet-/
+
 const CACHE_NAME = 'rands-wallet-v1.0.0';
 const REPO_PATH = '/Wallet-';
 const OFFLINE_URL = REPO_PATH + '/offline.html';
@@ -7,15 +10,17 @@ const OFFLINE_URL = REPO_PATH + '/offline.html';
 const PRECACHE_URLS = [
   REPO_PATH + '/',
   REPO_PATH + '/index.html',
-  REPO_PATH + '/dashboard.html',
+  REPO_PATH + '/wallet.html',        // Changed from dashboard.html
   REPO_PATH + '/offline.html',
   REPO_PATH + '/manifest.json',
+  REPO_PATH + '/icons/icon-192x192.png',
+  REPO_PATH + '/icons/icon-512x512.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
 // Install event - cache core assets
 self.addEventListener('install', event => {
-  console.log('[SW] Installing...');
+  console.log('[SW] Installing Rands Wallet...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -51,6 +56,7 @@ self.addEventListener('fetch', event => {
     caches.match(event.request)
       .then(cachedResponse => {
         if (cachedResponse) {
+          // Return cached version and update in background
           fetch(event.request)
             .then(networkResponse => {
               if (networkResponse && networkResponse.status === 200) {
@@ -131,10 +137,10 @@ self.addEventListener('push', event => {
   const options = {
     body: data.body || 'You have a new notification',
     icon: REPO_PATH + '/icons/icon-192x192.png',
-    badge: REPO_PATH + '/icons/badge-icon.png',
+    badge: REPO_PATH + '/icons/icon-192x192.png',  // Changed from badge-icon.png
     vibrate: [200, 100, 200],
     data: {
-      url: data.url || REPO_PATH + '/dashboard.html'
+      url: data.url || REPO_PATH + '/wallet.html'  // Changed from dashboard.html
     }
   };
   
@@ -148,7 +154,7 @@ self.addEventListener('notificationclick', event => {
   event.notification.close();
   
   if (event.action === 'view' || !event.action) {
-    const urlToOpen = event.notification.data?.url || REPO_PATH + '/';
+    const urlToOpen = event.notification.data?.url || REPO_PATH + '/wallet.html';  // Changed from dashboard.html
     
     event.waitUntil(
       clients.matchAll({ type: 'window', includeUncontrolled: true })
@@ -166,6 +172,7 @@ self.addEventListener('notificationclick', event => {
   }
 });
 
+// Message handling for skipWaiting
 self.addEventListener('message', event => {
   if (event.data === 'skipWaiting') {
     self.skipWaiting();
